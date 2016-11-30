@@ -308,6 +308,18 @@ class Shipping extends Ups
             $node->appendChild($xml->createElement('NegotiatedRatesIndicator'));
         }
 
+        if (isset($shipment->ReferenceNumber)) {
+            $node = $shipmentNode->appendChild($xml->createElement('ReferenceNumber'));
+            $node->appendChild($xml->createElement('Code', $shipment->ReferenceNumber->Code));
+            $node->appendChild($xml->createElement('Value', $shipment->ReferenceNumber->Value));
+        }
+
+        if (isset($shipment->ReferenceNumber2)) {
+            $node = $shipmentNode->appendChild($xml->createElement('ReferenceNumber'));
+            $node->appendChild($xml->createElement('Code', $shipment->ReferenceNumber2->Code));
+            $node->appendChild($xml->createElement('Value', $shipment->ReferenceNumber2->Value));
+        }
+
         foreach ($shipment->Package as &$package) {
             $node = $shipmentNode->appendChild($xml->createElement('Package'));
 
